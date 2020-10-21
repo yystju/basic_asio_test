@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 
     auto interval = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(end - start);
 
-    const A& a = g["00000::00000"];
+    auto& a = g["00000::00000"];
 
     std::cout << "a : " << a.get_name() << std::endl;
 
