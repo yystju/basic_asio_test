@@ -19,9 +19,9 @@ int main(int argc, char *argv[]) {
 
   std::vector<com::xxx::VC<>> items
   {{
-    {"VC1", {{"A", "1"}, {"B", "x"}, {"C", "1"}, {"D", "a"}}, 2},
-    {"VC2", {{"A", "2"}, {"B", "x"}, {"C", "1"}, {"D", "a"}}, 2},
-    {"VC3", {{"A", "4"}, {"B", "x"}, {"C", "4"}, {"D", "a"}}, 2}
+    {"VC1", {{"A", "1"}, {"B", "x"}, {"C", "1"}, {"D", "a"}}, 10},
+    {"VC2", {{"A", "2"}, {"B", "x"}, {"C", "1"}, {"D", "a"}}, 10},
+    {"VC3", {{"A", "4"}, {"B", "x"}, {"C", "4"}, {"D", "a"}}, 20}
   }};
 
   std::map<std::string, com::xxx::Combination<>> combinations = com::xxx::Combination<>::init(definitions, items);
