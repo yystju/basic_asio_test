@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package com.xxx;
+
+message Range {
+  int64 start = 1;
+  int64 end = 2;
+  int32 capacity = 3;
+}
+
+message Calendar {
+  int32 id = 1;
+  repeated Range ranges = 2;
+}
+
+message Resource {
+  int32 id = 1;
+  string name = 2;
+  repeated Calendar calendars = 3;
+}
+
+message Task {
+  int32 id = 1;
+  string name = 2;
+  int64 start = 3;
+  int64 end = 4;
+  int32 capacity = 5;
+}
+
+message Edge {
+  int32 from = 1;
+  int32 to = 2;
+}
+
+message Project {
+  int32 id = 1;
+  string name = 2;
+  repeated Task tasks = 3;
+  repeated Edge edges = 4;
+}
+
+message Parameter {
+  int32 id = 1;
+  string name = 2;
+  string date_time = 3;
+  enum Type {
+    SSGS = 0;
+    Recursive = 1;
+    GA = 2;
+  }
+
+  Type type = 4;
+
+  repeated Resource resources = 5;
+  repeated Project projects = 6;
+}
