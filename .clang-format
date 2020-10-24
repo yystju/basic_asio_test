@@ -80,12 +80,12 @@ IncludeCategories:
 IncludeIsMainRegex: '(Test)?$'
 IncludeIsMainSourceRegex: ''
 IndentCaseLabels: false
-IndentCaseBlocks: false
+# IndentCaseBlocks: false
 IndentGotoLabels: true
 IndentPPDirectives: None
 IndentWidth:     2
 IndentWrappedFunctionNames: false
-InsertTrailingCommas: None
+# InsertTrailingCommas: None
 JavaScriptQuotes: Leave
 JavaScriptWrapImports: true
 KeepEmptyLinesAtTheStartOfBlocks: true
@@ -95,7 +95,7 @@ MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
 ObjCBinPackProtocolList: Auto
 ObjCBlockIndentWidth: 2
-ObjCBreakBeforeNestedBlockParam: true
+# ObjCBreakBeforeNestedBlockParam: true
 ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: true
 PenaltyBreakAssignment: 2

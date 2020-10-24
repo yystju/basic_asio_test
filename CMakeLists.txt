@@ -38,3 +38,8 @@ set_property(TARGET graph2_test PROPERTY CXX_STANDARD 17)
 add_executable(heijunka_test heijunka_test.cpp heijunka.h ${PROTO_SRCS} ${PROTO_HDRS})
 target_link_libraries(heijunka_test ${Boost_LIBRARIES} ${Protobuf_LIBRARIES})
 set_property(TARGET heijunka_test PROPERTY CXX_STANDARD 17)
+
+
+add_executable(just_for_fun just_for_fun.cpp ${PROTO_SRCS} ${PROTO_HDRS})
+target_link_libraries(just_for_fun ${Boost_LIBRARIES} ${Protobuf_LIBRARIES})
+set_property(TARGET just_for_fun PROPERTY CXX_STANDARD 17)
