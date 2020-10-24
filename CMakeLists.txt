@@ -15,12 +15,12 @@ find_package( Boost 1.73.0 COMPONENTS system date_time coroutine REQUIRED )
 include_directories( ${Boost_INCLUDE_DIR} )
 
 
-# find_package(Protobuf REQUIRED)
-# include_directories(${Protobuf_INCLUDE_DIRS})
-# include_directories(${CMAKE_CURRENT_BINARY_DIR})
+find_package(Protobuf REQUIRED)
+include_directories(${Protobuf_INCLUDE_DIRS})
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-# protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ./protobuff/parameter.proto)
-# # protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS EXPORT_MACRO DLL_EXPORT ./protobuff/parameter.proto)
+protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ./protobuff/Hello.proto)
+# protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS EXPORT_MACRO DLL_EXPORT ./protobuff/parameter.proto)
 
 add_executable(client client.cpp trace.h graph2.h ${PROTO_SRCS} ${PROTO_HDRS})
 target_link_libraries(client ${Boost_LIBRARIES} ${Protobuf_LIBRARIES})

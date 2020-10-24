@@ -1,20 +1,22 @@
 #include <boost/asio/buffer.hpp>
 #include <boost/asio/io_service.hpp>
-#include <boost/asio/spawn.hpp>
 #include <boost/asio/ip/tcp.hpp>
+#include <boost/asio/spawn.hpp>
 #include <boost/asio/write.hpp>
+#include <chrono>
 #include <ctime>
 #include <string>
 
-#include <iostream>
-#include <sstream>
 #include <iomanip>
+#include <iostream>
 #include <list>
+#include <sstream>
 
+#include "Hello.pb.h"
 #include "heijunka.h"
 
 /**
- * Copied from https://theboostcpplibraries.com/boost.asio-coroutines 
+ * Copied from https://theboostcpplibraries.com/boost.asio-coroutines
  */
 
 using namespace boost::asio;
@@ -27,36 +29,18 @@ std::list<tcp::socket> tcp_sockets;
 std::string data;
 
 std::string do_business() {
-  std::ostringstream outs;
+  com::xxx::message::Hello hello;
 
-  std::time_t now = std::time(nullptr);
+  hello.set_id(1024);
+  hello.set_name("THIS IS A TEST.");
 
-  std::string time = std::ctime(&now);
+  int64_t now = std::chrono::duration_cast<std::chrono::milliseconds>(
+                    std::chrono::system_clock::now().time_since_epoch())
+                    .count();
 
-  outs << time << std::endl;
+  hello.set_timestamp(now);
 
-  std::map<std::string, int> plan_map;
-
-  int sed = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-
-  srand(sed);
-
-  plan_map.emplace("SOME_ZERO", 0);
-  outs << "plan_map[SOME_ZERO] : " << plan_map["SOME_ZERO"] << std::endl;
-
-  for (int i = 0; i < 3; ++i) {
-    std::string key = (boost::format("%05d") % i).str();
-    plan_map.emplace(key, abs(rand() % 10));
-
-    outs << "plan_map[" << key << "] : " << plan_map[key] << std::endl;
-  }
-
-  com::xxx::Heijunka<std::string>::heijunka(
-      plan_map, [&outs](int i, const std::string &key) -> void {
-        outs << std::setw(5) << i << ":" << key << std::endl;
-      });
-
-  return outs.str();
+  return hello.SerializeAsString();
 }
 
 void do_write(tcp::socket &tcp_socket, yield_context yield) {
@@ -75,7 +59,11 @@ void do_accept(yield_context yield) {
 }
 
 int main() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
   tcp_acceptor.listen();
   spawn(ioservice, do_accept);
   ioservice.run();
+
+  google::protobuf::ShutdownProtobufLibrary();
 }

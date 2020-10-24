@@ -9,7 +9,7 @@ template <class K = std::string, class V = int> struct alignas(8) Data {
   std::string name;
   std::map<K, std::vector<V>> map;
 
-  [[deprecated("THIS IS A TEST.")]] void do_something() {
+  [[SOMETHING("THIS IS A TEST.")]] void do_something() {
     for (auto &[first, second] : this->map) {
       std::cout << first << " : " << second.size() << std::endl;
     }
