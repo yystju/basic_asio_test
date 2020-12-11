@@ -86,7 +86,10 @@
         "ios": "cpp",
         "locale": "cpp",
         "coroutine": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "*.ipp": "cpp",
+        "queue": "cpp",
+        "__functional_03": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }

@@ -11,7 +11,7 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-find_package( Boost 1.73.0 COMPONENTS system date_time coroutine REQUIRED )
+find_package( Boost 1.73.0 COMPONENTS system date_time coroutine fiber REQUIRED )
 include_directories( ${Boost_INCLUDE_DIR} )
 
 
